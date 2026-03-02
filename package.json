@@ -21,7 +21,7 @@
     "build-css:min": "lightningcss --targets \">= 0.25%\" --sourcemap --minify --nesting src/index.css -o ./dist/style.min.css",
     "build-esm": "esbuild src/index.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
     "build-esm:min": "esbuild ./src/index.ts --format=esm --keep-names --bundle --loader:.css=text --tsconfig=tsconfig.build.json --minify --out-extension:.js=.min.js --outdir=./dist --sourcemap",
-    "build-example": "mkdir -p ./public && rm -rf ./public/* && NODE_ENV=development vite --mode staging --base=\"/color-picker\" build",
+    "build-example": "mkdir -p ./public && rm -rf ./public/* && vite --mode staging --base=\"/color-picker\" build",
     "build-docs": "typedoc --tsconfig tsconfig.build.json ./src/index.ts",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-esm && npm run build-esm:min && npm run build-css && npm run build-css:min",
     "start": "vite",
