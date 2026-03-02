@@ -1,0 +1,22 @@
+color-picker {
+  display: inline-block;
+
+  & .picker {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  & .swatch {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #444;
+    border-radius: 999px;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  & .swatch[aria-checked='true'] {
+    box-shadow: 0 0 0 2px #fff inset;
+  }
+}

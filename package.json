@@ -1,58 +1,72 @@
 {
-    "name": "@simonwep/pickr",
-    "version": "1.9.1",
-    "license": "MIT",
-    "author": "Simon Reinisch <trash@reinisch.io>",
-    "description": "Flat, Simple, Hackable Color-Picker.",
-    "keywords": [
-        "ux",
-        "pickr",
-        "color",
-        "color-picker"
-    ],
-    "main": "./dist/pickr.min.js",
-    "types": "./types/pickr.d.ts",
-    "module": "./dist/pickr.min.js",
-    "scripts": {
-        "build": "node ./scripts/build.js",
-        "dev": "webpack serve --mode development",
-        "lint": "eslint ./src/**/*.js",
-        "lint:fix": "npm run lint -- --fix",
-        "test:ci": "npm run lint:fix && npm run build"
-    },
-    "homepage": "https://github.com/Simonwep/pickr#readme",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Simonwep/pickr.git"
-    },
-    "bugs": {
-        "url": "https://github.com/Simonwep/pickr/issues"
-    },
-    "files": [
-        "types",
-        "dist",
-        "src/scss"
-    ],
-    "devDependencies": {
-        "@babel/core": "7.24.5",
-        "@babel/preset-env": "7.24.5",
-        "autoprefixer": "10.4.19",
-        "babel-loader": "9.1.3",
-        "css-loader": "7.1.1",
-        "eslint": "8.57.0",
-        "eslint-webpack-plugin": "4.1.0",
-        "mini-css-extract-plugin": "2.9.0",
-        "postcss-loader": "8.1.1",
-        "sass": "1.77.0",
-        "sass-loader": "14.2.1",
-        "terser-webpack-plugin": "5.3.10",
-        "webpack": "5.91.0",
-        "webpack-cli": "5.1.4",
-        "webpack-dev-server": "5.0.4",
-        "webpack-remove-empty-scripts": "1.0.4"
-    },
-    "dependencies": {
-        "core-js": "3.37.0",
-        "nanopop": "2.4.2"
-    }
+  "name": "@substrate-system/color-picker",
+  "version": "0.0.0",
+  "description": "Color picker web component",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "./dist/*"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./css": "./dist/index.css",
+    "./min/css": "./dist/index.min.css",
+    "./min/*": "./dist/*.min.js"
+  },
+  "scripts": {
+    "lint": "eslint \"./**/*.{ts,js}\"",
+    "test": "npm run test:node && npm run test:browser",
+    "test:node": "rm -rf .tmp-test && esbuild ./test/build-artifacts.test.ts ./test/example-smoke.test.ts ./test/example-interaction.test.ts --bundle --format=esm --platform=node --outdir=.tmp-test && node --test .tmp-test/*.js",
+    "test:browser": "esbuild --bundle --loader:.css=text ./test/index.ts | tapout",
+    "build-css": "lightningcss --targets \">= 0.25%\" --sourcemap --nesting src/index.css -o ./dist/style.css",
+    "build-css:min": "lightningcss --targets \">= 0.25%\" --sourcemap --minify --nesting src/index.css -o ./dist/style.min.css",
+    "build-esm": "esbuild src/index.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
+    "build-esm:min": "esbuild ./src/index.ts --format=esm --keep-names --bundle --loader:.css=text --tsconfig=tsconfig.build.json --minify --out-extension:.js=.min.js --outdir=./dist --sourcemap",
+    "build-example": "mkdir -p ./public && rm -rf ./public/* && NODE_ENV=development vite --mode staging --base=\"/color-picker\" build",
+    "build-docs": "typedoc --tsconfig tsconfig.build.json ./src/index.ts",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-esm && npm run build-esm:min && npm run build-css && npm run build-css:min",
+    "start": "vite",
+    "toc": "markdown-toc --maxdepth 3 -i README.md",
+    "preversion": "npm run lint && stylelint src/*.css",
+    "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
+    "postversion": "git push --follow-tags && npm publish",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@substrate-system/web-component": "^0.0.46"
+  },
+  "devDependencies": {
+    "@substrate-system/css-normalize": "^0.0.13",
+    "@substrate-system/debug": "^0.9.60",
+    "@substrate-system/dom": "^0.1.13",
+    "@substrate-system/tapout": "^0.0.37",
+    "@substrate-system/tapzero": "^0.10.16",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "browserslist": "^4.28.1",
+    "esbuild": "^0.27.0",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "lightningcss": "^1.31.1",
+    "lightningcss-cli": "^1.31.1",
+    "markdown-toc": "^1.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  },
+  "keywords": [
+    "color",
+    "picker",
+    "web",
+    "component"
+  ],
+  "homepage": "https://github.com/substrate-system/color-picker",
+  "bugs": {
+    "url": "https://github.com/substrate-system/color-picker/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/substrate-system/color-picker.git"
+  },
+  "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)",
+  "license": "SEE LICENSE IN LICENSE"
 }

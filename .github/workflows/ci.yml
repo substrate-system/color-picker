@@ -1,54 +1,31 @@
-name: CI
+name: Node CI
 
-on: [ "push", "pull_request" ]
+on: [push]
 
 jobs:
-    build:
-        name: Lint and build
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout repository
-                uses: actions/checkout@v4
+  build:
 
-            -   name: Setup pnpm
-                uses: pnpm/action-setup@v3
-                with:
-                    version: 9.0.6
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
 
-            -   name: Set up Node.js
-                uses: actions/setup-node@v4
-                with:
-                    node-version: 20
-                    cache: 'pnpm'
+    strategy:
+      matrix:
+        node-version: [22.x]
 
-            -   name: Install dependencies
-                run: pnpm install --frozen-lockfile
-
-            -   name: Lint
-                run: pnpm run lint
-
-            -   name: Build
-                run: pnpm run build
-
-            -   name: Bundle files for deployment
-                run: tar -cvf github-pages.tar dist www index.html
-
-            -   name: Upload artifact for deployment
-                uses: actions/upload-artifact@v4
-                with:
-                    name: github-pages
-                    path: github-pages.tar
-
-    deploy:
-        name: Deploy to GitHub Pages
-        needs: build
-        permissions:
-            pages: write
-            id-token: write
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Deploy to GitHub Pages
-                uses: actions/deploy-pages@v4
+    steps:
+    - uses: actions/checkout@v6
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build
+      run: |
+        npm install
+        npx playwright install --with-deps
+        npm run build --if-present
+        npm run lint
+      env:
+        CI: true
+    - name: Run tap tests
+      run: |
+        xvfb-run --server-args="-screen 0 1920x1080x24" npm test
