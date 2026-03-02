@@ -69,3 +69,16 @@ typings/
 # My psd files
 /_psd
 /dist
+.claude
+
+.codex
+.specify
+dist/
+build/
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.env*

@@ -1,0 +1,30 @@
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: radial-gradient(circle at top right, #dbeafe, #f8fafc 40%, #e2e8f0 100%);
+  color: #0f172a;
+  font-family: 'Avenir Next', 'Segoe UI', sans-serif;
+}
+
+main {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.15);
+}
+
+h1 {
+  margin-top: 0;
+  letter-spacing: 0.02em;
+}
+
+output {
+  font-weight: 700;
+}

@@ -76,6 +76,28 @@
 > Nano uses css-grid thus it won't work in older browsers.
 
 ## Getting Started
+### Substrate Web Component (TypeScript)
+
+```ts
+import { registerPickerWC } from '@substrate-system/pickr';
+
+registerPickerWC();
+
+const picker = document.querySelector('picker-wc');
+picker.swatches = ['#000000', '#ffffff', '#ef4444'];
+picker.value = '#ffffff';
+picker.addEventListener('change', (ev) => {
+  console.log(ev.detail.value);
+});
+```
+
+Run local example:
+
+```bash
+npm install
+npm run start
+```
+
 ### Node
 Note: The readme is always up-to-date with the latest commit. See [Releases](https://github.com/Simonwep/pickr/releases) for installation instructions regarding to the latest version.
 

@@ -1,0 +1,10 @@
+node_modules/
+coverage/
+.specify/
+.codex/
+specs/
+www/
+_psd/
+*.log
+.env*
+.github/
