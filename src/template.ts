@@ -1,7 +1,6 @@
-import * as _ from './utils/utils';
+import * as _ from './utils/utils'
 
 export default instance => {
-
     const {
         components,
         useAsButton,
@@ -9,11 +8,11 @@ export default instance => {
         appClass,
         theme,
         lockOpacity
-    } = instance.options;
+    } = instance.options
 
     // Utils
-    const hidden = con => con ? '' : 'style="display:none" hidden';
-    const t = str => instance._t(str);
+    const hidden = con => con ? '' : 'style="display:none" hidden'
+    const t = str => instance._t(str)
 
     const root = _.createFromTemplate(`
       <div :ref="root" class="pickr">
@@ -60,14 +59,14 @@ export default instance => {
           </div>
         </div>
       </div>
-    `);
+    `)
 
-    const int = root.interaction;
+    const int = root.interaction
 
     // Select option which is not hidden
-    int.options.find(o => !o.hidden && !o.classList.add('active'));
+    int.options.find(o => !o.hidden && !o.classList.add('active'))
 
     // Append method to find currently active option
-    int.type = () => int.options.find(e => e.classList.contains('active'));
-    return root;
-};
+    int.type = () => int.options.find(e => e.classList.contains('active'))
+    return root
+}

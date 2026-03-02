@@ -2,18 +2,18 @@
 
 :root {
   color-scheme: light;
+  --black:  #0f172a;
 }
 
 body {
-  color: #0f172a;
+  color: var(--black);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 4rem;
 }
 
 main {
-  max-width: 540px;
+  max-width: 40rem;
   margin: 0 auto;
-  padding: 24px;
-  background: rgba(255, 255, 255, 0.85);
   border: 1px solid black;
   box-shadow: 0 14px 40px rgba(15, 23, 42, 0.15);
 }

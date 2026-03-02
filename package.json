@@ -1,23 +1,8 @@
 {
   "name": "@substrate-system/color-picker",
-  "description": "Color picker web component.",
+  "description": "Color picker web component",
   "type": "module",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
-    },
-    "./color-picker": {
-      "import": "./dist/color-picker.js",
-      "require": "./dist/color-picker.cjs",
-      "types": "./dist/color-picker.d.ts"
-    },
-    "./css": "./dist/index.css",
-    "./css/min": "./dist/index.min.css"
-  },
   "files": [
     "./dist/*"
   ],
@@ -40,6 +25,20 @@
     "postversion": "git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./color-picker": {
+      "import": "./dist/color-picker.js",
+      "require": "./dist/color-picker.cjs",
+      "types": "./dist/color-picker.d.ts"
+    },
+    "./css": "./dist/index.css",
+    "./css/min": "./dist/index.min.css"
+  },
   "dependencies": {
     "@substrate-system/web-component": "^0.0.46"
   },
@@ -48,8 +47,8 @@
     "@substrate-system/dom": "^0.1.13",
     "@substrate-system/tapout": "^0.0.37",
     "@substrate-system/tapzero": "^0.10.16",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
     "browserslist": "^4.28.1",
     "esbuild": "^0.27.0",
     "eslint": "^8.57.0",

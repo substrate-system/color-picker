@@ -1,8 +1,7 @@
 declare class Pickr {
-
-    static version: string; // Current version
-    static utils: any; // See docs
-    static libs: any;  // See docs
+    static version: string // Current version
+    static utils: any // See docs
+    static libs: any  // See docs
 
     constructor(options: Pickr.Options);
 
@@ -169,4 +168,4 @@ declare namespace Pickr {
     type Slider = 'v' | 'h';
 }
 
-export default Pickr;
+export default Pickr
