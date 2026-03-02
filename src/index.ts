@@ -19,6 +19,18 @@ interface SelectionState {
     lastInteraction:InteractionSource|null
 }
 
+const DEFAULT_SWATCHES = [
+    '#000000',
+    '#f8fafc',
+    '#ef4444',
+    '#f97316',
+    '#eab308',
+    '#22c55e',
+    '#3b82f6',
+    '#8b5cf6',
+    '#ec4899'
+]
+
 // for docuement.querySelector
 declare global {
     interface HTMLElementTagNameMap {
@@ -29,8 +41,8 @@ declare global {
 export class ColorPicker extends WebComponent.create('color-picker') {
     static observedAttributes = ['value', 'disabled', 'aria-label']
 
-    private _swatches:string[] = []
-    private _state = createSelectionState()
+    private _swatches:string[] = [...DEFAULT_SWATCHES]
+    private _state = createSelectionState(0, DEFAULT_SWATCHES[0])
 
     get swatches ():string[] {
         return [...this._swatches]
@@ -52,7 +64,8 @@ export class ColorPicker extends WebComponent.create('color-picker') {
 
         if (
             this._state.selectedIndex == null ||
-            this._state.selectedIndex >= this._swatches.length
+            this._state.selectedIndex >= this._swatches.length ||
+            this._state.selectedValue !== this._swatches[this._state.selectedIndex]
         ) {
             this.selectByIndex(0, 'programmatic')
             return
@@ -210,11 +223,11 @@ function sanitizeSwatches (swatches:string[]):string[] {
     return swatches.filter(isValidCssColor)
 }
 
-function createSelectionState ():SelectionState {
+function createSelectionState (selectedIndex:number|null = null, selectedValue:string|null = null):SelectionState {
     return {
-        activeIndex: null,
-        selectedIndex: null,
-        selectedValue: null,
+        activeIndex: selectedIndex,
+        selectedIndex,
+        selectedValue,
         lastInteraction: null
     }
 }

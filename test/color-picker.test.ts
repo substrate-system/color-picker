@@ -2,6 +2,16 @@ import { test } from '@substrate-system/tapzero'
 
 import { ColorPicker } from '../src/index'
 
+test('uses default swatches when none are provided', (t) => {
+    const picker = new ColorPicker()
+    picker.render()
+
+    const swatches = picker.querySelectorAll('[role="radio"]')
+    t.equal(swatches.length, 9)
+    t.equal((swatches[0] as HTMLElement|undefined)?.dataset.value, '#000000')
+    t.equal((swatches[0] as HTMLElement|undefined)?.getAttribute('aria-checked'), 'true')
+})
+
 test('renders swatches in provided order with deterministic default selection', (t) => {
     const picker = new ColorPicker()
     picker.swatches = ['#000000', '#ffffff', '#ff0000']
