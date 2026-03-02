@@ -46,7 +46,8 @@ npm i -S @substrate-system/color-picker
 ## Example
 
 It registers itself under the name `color-picker`. Just import, then you can
-use the tag in HTML. Set `swatches` to an array of valid CSS color strings.
+use the tag in HTML. Set `swatches` to an array of valid CSS color strings, or
+use the default swatches.
 
 ### JS
 
@@ -58,7 +59,7 @@ const picker = document.querySelector('color-picker')
 picker.swatches = ['#000', '#fff', '#ef4444', '#3b82f6']
 picker.value = '#000'
 
-// use the `.on` method
+// use the `.on` method for namespaced event
 picker.on('change', (ev) => {
     console.log(ev.detail.value)   // selected color string
     console.log(ev.detail.index)   // index into swatches array
@@ -82,7 +83,7 @@ picker.on('change', (ev) => {
 | `value`    | `string\|null`  | The currently selected color string. |
 | `disabled` | `boolean`       | Disables all interaction.            |
 
-You can also set `value` via an HTML attribute:
+You can also set `value` via HTML attribute:
 
 ```html
 <color-picker value="#ef4444"></color-picker>
@@ -145,8 +146,6 @@ import { ColorPicker } from '@substrate-system/color-picker'
 
 ### Import CSS
 
-The component bundles its own styles. If you need to import them separately:
-
 ```js
 import '@substrate-system/color-picker/css'
 ```
@@ -178,11 +177,11 @@ color-picker .swatch[aria-checked='true'] {
 Copy the minified bundle to your web server:
 
 ```sh
-cp ./node_modules/@substrate-system/color-picker/dist/index.min.js ./public
+cp ./node_modules/@substrate-system/color-picker/dist/index.min.js ./public/picker.min.js
 ```
 
 Then reference it in HTML:
 
 ```html
-<script type="module" src="./index.min.js"></script>
+<script type="module" src="./picker.min.js"></script>
 ```
