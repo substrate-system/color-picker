@@ -12,28 +12,43 @@
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./picker-wc": {
-      "import": "./dist/picker-wc.js",
-      "require": "./dist/picker-wc.cjs",
-      "types": "./dist/picker-wc.d.ts"
+    "./color-picker": {
+      "import": "./dist/color-picker.js",
+      "require": "./dist/color-picker.cjs",
+      "types": "./dist/color-picker.d.ts"
     }
   },
-  "files": ["dist/*"],
+  "files": [
+    "./dist/*"
+  ],
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
-    "test": "esbuild ./test/*.test.ts --bundle --format=esm --platform=browser --outdir=.tmp-test && node --test .tmp-test/*.js",
-    "build:cjs": "esbuild src/*.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
-    "build:esm": "esbuild src/*.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
-    "build:esm:min": "esbuild src/*.ts --format=esm --keep-names --bundle --tsconfig=tsconfig.build.json --minify --out-extension:.js=.min.js --outdir=./dist --sourcemap",
-    "build:cjs:min": "esbuild src/*.ts --format=cjs --minify --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.min.cjs --sourcemap",
-    "build": "node ./scripts/build.js",
+    "test": "npm run test:node && npm run test:browser",
+    "test:node": "rm -rf .tmp-test && esbuild ./test/exports.test.ts ./test/example-smoke.test.ts ./test/example-interaction.test.ts --bundle --format=esm --platform=node --outdir=.tmp-test && node --test .tmp-test/*.js",
+    "test:browser": "esbuild --bundle --loader:.css=text ./test/index.ts | tapout",
+    "build-css": "node ./scripts/build-css.mjs",
+    "build-css:min": "node ./scripts/build-css.mjs --minify",
+    "build-cjs": "esbuild src/index.ts src/color-picker.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
+    "build-esm": "esbuild src/index.ts src/color-picker.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
+    "build-esm:min": "esbuild ./src/index.ts ./src/color-picker.ts --format=esm --keep-names --bundle --loader:.css=text --tsconfig=tsconfig.build.json --minify --out-extension:.js=.min.js --outdir=./dist --sourcemap",
+    "build-example": "mkdir -p ./public && rm -rf ./public/* && NODE_ENV=development vite --mode staging --base=\"/color-picker\" build",
+    "build-docs": "typedoc --tsconfig tsconfig.build.json ./src/index.ts",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-esm:min && npm run build-css && npm run build-css:min",
+    "build-cli": "esbuild ./bin/cli.ts > ./bin/cli.js",
     "start": "vite",
-    "clean": "rm -rf dist .tmp-test"
+    "toc": "markdown-toc --maxdepth 3 -i README.md",
+    "preversion": "npm run lint && stylelint src/*.css",
+    "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
+    "postversion": "git push --follow-tags && npm publish",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@substrate-system/web-component": "^0.0.46"
   },
   "devDependencies": {
+    "@substrate-system/dom": "^0.1.13",
+    "@substrate-system/tapout": "^0.0.37",
+    "@substrate-system/tapzero": "^0.10.16",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "browserslist": "^4.28.1",

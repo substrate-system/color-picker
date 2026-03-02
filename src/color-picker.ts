@@ -1,7 +1,7 @@
 import { WebComponent, isRegistered } from '@substrate-system/web-component'
-import { isValidCssColor, sanitizeSwatches } from './internal/color'
-import { clampIndex, createSelectionState, nextIndex, type InteractionSource } from './internal/selection'
-import './styles/picker-wc.css'
+import { isValidCssColor, sanitizeSwatches } from './color'
+import { clampIndex, createSelectionState, nextIndex, type InteractionSource } from './selection'
+import './index.css'
 
 interface ChangeDetail {
   value: string | null
@@ -9,7 +9,7 @@ interface ChangeDetail {
   source: InteractionSource
 }
 
-export class PickerWC extends WebComponent.create('picker-wc') {
+export class ColorPicker extends WebComponent.create('color-picker') {
   static observedAttributes = ['value', 'disabled', 'aria-label']
 
   private _swatches: string[] = []
@@ -22,7 +22,7 @@ export class PickerWC extends WebComponent.create('picker-wc') {
   set swatches (values: string[]) {
     const sanitized = sanitizeSwatches(values)
     if (sanitized.length !== values.length) {
-      console.warn('picker-wc: invalid CSS color values were ignored')
+      console.warn('color-picker: invalid CSS color values were ignored')
     }
 
     this._swatches = sanitized
@@ -176,8 +176,8 @@ export class PickerWC extends WebComponent.create('picker-wc') {
   }
 }
 
-export function registerPickerWC (): void {
-  if (!isRegistered(PickerWC.TAG)) {
-    PickerWC.define()
+export function registerColorPicker (): void {
+  if (!isRegistered(ColorPicker.TAG)) {
+    ColorPicker.define()
   }
 }

@@ -1,3 +1,3 @@
-import { PickerWC, registerPickerWC } from './picker-wc'
+import { ColorPicker, registerColorPicker } from './color-picker'
 
-export { PickerWC, registerPickerWC }
+export { ColorPicker, registerColorPicker }

@@ -79,11 +79,11 @@
 ### Substrate Web Component (TypeScript)
 
 ```ts
-import { registerPickerWC } from '@substrate-system/pickr';
+import { registerColorPicker } from '@substrate-system/pickr';
 
-registerPickerWC();
+registerColorPicker();
 
-const picker = document.querySelector('picker-wc');
+const picker = document.querySelector('color-picker');
 picker.swatches = ['#000000', '#ffffff', '#ef4444'];
 picker.value = '#ffffff';
 picker.addEventListener('change', (ev) => {

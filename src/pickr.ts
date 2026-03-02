@@ -1,8 +1,8 @@
 import * as _ from './utils/utils';
 import {parseToHSVA} from './utils/color';
 import {HSVaColor} from './utils/hsvacolor';
-import Moveable from './libs/moveable';
-import Selectable from './libs/selectable';
+import Moveable from './moveable';
+import Selectable from './selectable';
 import buildPickr from './template';
 import {createPopper} from 'nanopop';
 

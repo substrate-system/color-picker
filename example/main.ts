@@ -1,7 +1,7 @@
-import { registerPickerWC } from '../src/index'
+import { registerColorPicker } from '../src/index'
 import './style.css'
 
-registerPickerWC()
+registerColorPicker()
 
 const picker = document.getElementById('picker') as any
 const output = document.getElementById('selected') as HTMLOutputElement
