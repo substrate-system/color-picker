@@ -1,9 +1,7 @@
 {
-  "name": "@substrate-system/pickr",
-  "version": "2.0.0-alpha.0",
-  "description": "Swatch-first color picker web component.",
+  "name": "@substrate-system/color-picker",
+  "description": "Color picker web component.",
   "type": "module",
-  "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -16,7 +14,9 @@
       "import": "./dist/color-picker.js",
       "require": "./dist/color-picker.cjs",
       "types": "./dist/color-picker.d.ts"
-    }
+    },
+    "./css": "./dist/index.css",
+    "./css/min": "./dist/index.min.css"
   },
   "files": [
     "./dist/*"
@@ -26,15 +26,13 @@
     "test": "npm run test:node && npm run test:browser",
     "test:node": "rm -rf .tmp-test && esbuild ./test/exports.test.ts ./test/example-smoke.test.ts ./test/example-interaction.test.ts --bundle --format=esm --platform=node --outdir=.tmp-test && node --test .tmp-test/*.js",
     "test:browser": "esbuild --bundle --loader:.css=text ./test/index.ts | tapout",
-    "build-css": "node ./scripts/build-css.mjs",
-    "build-css:min": "node ./scripts/build-css.mjs --minify",
-    "build-cjs": "esbuild src/index.ts src/color-picker.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
+    "build-css": "lightningcss --targets \">= 0.25%\" --sourcemap --nesting src/index.css -o ./dist/style.css",
+    "build-css:min": "lightningcss --targets \">= 0.25%\" --sourcemap --minify --nesting src/index.css -o ./dist/style.min.css",
     "build-esm": "esbuild src/index.ts src/color-picker.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
     "build-esm:min": "esbuild ./src/index.ts ./src/color-picker.ts --format=esm --keep-names --bundle --loader:.css=text --tsconfig=tsconfig.build.json --minify --out-extension:.js=.min.js --outdir=./dist --sourcemap",
     "build-example": "mkdir -p ./public && rm -rf ./public/* && NODE_ENV=development vite --mode staging --base=\"/color-picker\" build",
     "build-docs": "typedoc --tsconfig tsconfig.build.json ./src/index.ts",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-esm:min && npm run build-css && npm run build-css:min",
-    "build-cli": "esbuild ./bin/cli.ts > ./bin/cli.js",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-esm && npm run build-esm:min && npm run build-css && npm run build-css:min",
     "start": "vite",
     "toc": "markdown-toc --maxdepth 3 -i README.md",
     "preversion": "npm run lint && stylelint src/*.css",
@@ -46,6 +44,7 @@
     "@substrate-system/web-component": "^0.0.46"
   },
   "devDependencies": {
+    "@substrate-system/css-normalize": "^0.0.13",
     "@substrate-system/dom": "^0.1.13",
     "@substrate-system/tapout": "^0.0.37",
     "@substrate-system/tapzero": "^0.10.16",
@@ -56,6 +55,8 @@
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "lightningcss": "^1.31.1",
+    "lightningcss-cli": "^1.31.1",
+    "markdown-toc": "^1.2.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"
   }
