@@ -35,7 +35,7 @@ types, and run tests/lint using the preferred Substrate-style toolchain.
 **Why this priority**: Migration is incomplete without matching build and release
 workflow.
 
-**Independent Test**: Run build and verify ESM/CJS outputs and declaration files
+**Independent Test**: Run build and verify ESM/minified outputs, CSS artifacts, and declaration files
 are generated from TypeScript entry points.
 
 **Acceptance Scenarios**:
@@ -111,7 +111,7 @@ confirm documented behavior matches runtime behavior.
 
 - **SC-001**: 100% of component behavior tests for pointer and keyboard
   selection pass in CI.
-- **SC-002**: TypeScript build emits ESM/CJS bundles and declaration files with
+- **SC-002**: TypeScript build emits ESM/minified bundles and declaration files with
   no webpack build step.
 - **SC-003**: Example app demonstrates documented API and passes manual
   interaction checklist for swatch selection and accessibility states.

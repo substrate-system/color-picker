@@ -1,6 +1,6 @@
 # Implementation Plan: Substrate Web Component Style Migration
 
-**Branch**: `001-substrate-wc-style-migration` | **Date**: 2026-03-01 | **Spec**: [/Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/spec.md](/Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/spec.md)
+**Branch**: `001-substrate-wc-style-migration` | **Date**: 2026-03-01 | **Spec**: [/Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/spec.md](/Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/spec.md)
 **Input**: Feature specification from `/specs/001-substrate-wc-style-migration/spec.md`
 
 ## Summary
@@ -99,7 +99,7 @@ Output artifact: `research.md` with decisions, rationale, alternatives.
    accessibility semantics) in `contracts/web-component-api.md`.
 3. Author `quickstart.md` for install, dev, build, test, and example execution.
 4. Update agent context via
-   `/Users/nick/code/picker-wc/.specify/scripts/bash/update-agent-context.sh codex`.
+   `/Users/nick/code/color-picker/.specify/scripts/bash/update-agent-context.sh codex`.
 5. Re-check constitution gate after design artifacts are complete.
 
 Post-design gate review:

@@ -18,12 +18,6 @@ npm run lint
 npm test
 ```
 
-Optional clean before build:
-
-```bash
-npm run clean
-```
-
 ## Build library artifacts
 
 ```bash
@@ -31,9 +25,10 @@ npm run build
 ```
 
 Expected outputs after migration:
-- `dist/*.js` (ESM)
-- `dist/*.cjs` (CJS)
-- `dist/*.d.ts` (Type declarations)
+- `dist/index.js` (ESM)
+- `dist/index.min.js` (minified ESM)
+- `dist/style.css` and `dist/style.min.css`
+- `dist/index.d.ts` (Type declarations)
 
 ## Run example app
 
@@ -56,7 +51,6 @@ Open the local Vite URL and verify:
 
 ## Verification Log
 
-- `npm install --verbose`: FAILED (`ENOTFOUND` resolving `registry.npmjs.org`, cannot fetch new dependencies in current environment)
-- `npm run lint`: FAILED (`ERR_MODULE_NOT_FOUND` for `@typescript-eslint/parser` because install failed)
-- `npm test`: FAILED (`esbuild: command not found` because install failed)
-- `npm run build`: FAILED (`esbuild: command not found` because install failed)
+- `npm run lint`: PASSED (exit 0 on 2026-03-02)
+- `npm test`: FAILED (`test/build-artifacts.test.ts` expects `dist/index.cjs`, but build outputs are ESM/minified ESM)
+- `npm run build`: PASSED (exit 0 on 2026-03-02)

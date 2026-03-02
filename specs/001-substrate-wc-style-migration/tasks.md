@@ -25,12 +25,12 @@ accessibility semantics, and emitted color values.
 
 **Purpose**: Project initialization and baseline TypeScript/Substrate tooling.
 
-- [X] T001 Update npm scripts and package metadata for TypeScript/esbuild/vite workflow in /Users/nick/code/picker-wc/package.json
-- [X] T002 Add TypeScript compiler configuration for source and declaration output in /Users/nick/code/picker-wc/tsconfig.json
-- [X] T003 [P] Add build-specific compiler options for distribution output in /Users/nick/code/picker-wc/tsconfig.build.json
-- [X] T004 [P] Add ESLint configuration for TypeScript code style in /Users/nick/code/picker-wc/eslint.config.js
-- [X] T005 [P] Add example app entry page scaffold for Vite in /Users/nick/code/picker-wc/example/index.html
-- [X] T006 Add root source entrypoint that exports component modules in /Users/nick/code/picker-wc/src/index.ts
+- [X] T001 Update npm scripts and package metadata for TypeScript/esbuild/vite workflow in /Users/nick/code/color-picker/package.json
+- [X] T002 Add TypeScript compiler configuration for source and declaration output in /Users/nick/code/color-picker/tsconfig.json
+- [X] T003 [P] Add build-specific compiler options for distribution output in /Users/nick/code/color-picker/tsconfig.build.json
+- [X] T004 [P] Add ESLint configuration for TypeScript code style in /Users/nick/code/color-picker/eslint.config.js
+- [X] T005 [P] Add example app entry page scaffold for Vite in /Users/nick/code/color-picker/example/index.html
+- [X] T006 Add root source entrypoint that exports component modules in /Users/nick/code/color-picker/src/index.ts
 
 ---
 
@@ -40,11 +40,11 @@ accessibility semantics, and emitted color values.
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [X] T007 Add color validation/parser helper utilities in /Users/nick/code/picker-wc/src/internal/color.ts
-- [X] T008 [P] Add deterministic selection state helpers in /Users/nick/code/picker-wc/src/internal/selection.ts
-- [X] T009 [P] Add base component stylesheet for swatch/focus states in /Users/nick/code/picker-wc/src/styles/picker-wc.css
-- [X] T010 Add component registration and export wiring in /Users/nick/code/picker-wc/src/index.ts
-- [X] T011 Add test harness bootstrap for component tests in /Users/nick/code/picker-wc/test/setup.ts
+- [X] T007 Add color validation/parser helper utilities in /Users/nick/code/color-picker/src/internal/color.ts
+- [X] T008 [P] Add deterministic selection state helpers in /Users/nick/code/color-picker/src/internal/selection.ts
+- [X] T009 [P] Add base component stylesheet for swatch/focus states in /Users/nick/code/color-picker/src/styles/picker-wc.css
+- [X] T010 Add component registration and export wiring in /Users/nick/code/color-picker/src/index.ts
+- [X] T011 Add test harness bootstrap for component tests in /Users/nick/code/color-picker/test/setup.ts
 
 **Checkpoint**: Foundation ready; user story implementation can now begin.
 
@@ -60,18 +60,18 @@ accessibility semantics, and emitted color values.
 
 > **NOTE**: Write these tests FIRST, ensure they FAIL before implementation.
 
-- [X] T012 [P] [US1] Add failing render-order and default-selection test in /Users/nick/code/picker-wc/test/picker-wc.test.ts
-- [X] T013 [P] [US1] Add failing change-event detail contract test in /Users/nick/code/picker-wc/test/picker-wc.test.ts
-- [X] T014 [P] [US1] Add failing keyboard navigation and ARIA semantics test in /Users/nick/code/picker-wc/test/a11y.test.ts
+- [X] T012 [P] [US1] Add failing render-order and default-selection test in /Users/nick/code/color-picker/test/picker-wc.test.ts
+- [X] T013 [P] [US1] Add failing change-event detail contract test in /Users/nick/code/color-picker/test/picker-wc.test.ts
+- [X] T014 [P] [US1] Add failing keyboard navigation and ARIA semantics test in /Users/nick/code/color-picker/test/a11y.test.ts
 
 ### Implementation for User Story 1
 
-- [X] T015 [US1] Implement `PickerWC` class extending `@substrate-system/web-component` in /Users/nick/code/picker-wc/src/picker-wc.ts
-- [X] T016 [US1] Implement swatch array property/attribute handling and deterministic rendering in /Users/nick/code/picker-wc/src/picker-wc.ts
-- [X] T017 [US1] Implement pointer and keyboard selection transitions using selection helpers in /Users/nick/code/picker-wc/src/picker-wc.ts
-- [X] T018 [US1] Implement `change` event emission with `{ value, index, source }` detail in /Users/nick/code/picker-wc/src/picker-wc.ts
-- [X] T019 [US1] Implement accessibility roles, `aria-checked`, and visible focus class updates in /Users/nick/code/picker-wc/src/picker-wc.ts
-- [X] T020 [US1] Wire component stylesheet import and host styling application in /Users/nick/code/picker-wc/src/picker-wc.ts
+- [X] T015 [US1] Implement `PickerWC` class extending `@substrate-system/web-component` in /Users/nick/code/color-picker/src/picker-wc.ts
+- [X] T016 [US1] Implement swatch array property/attribute handling and deterministic rendering in /Users/nick/code/color-picker/src/picker-wc.ts
+- [X] T017 [US1] Implement pointer and keyboard selection transitions using selection helpers in /Users/nick/code/color-picker/src/picker-wc.ts
+- [X] T018 [US1] Implement `change` event emission with `{ value, index, source }` detail in /Users/nick/code/color-picker/src/picker-wc.ts
+- [X] T019 [US1] Implement accessibility roles, `aria-checked`, and visible focus class updates in /Users/nick/code/color-picker/src/picker-wc.ts
+- [X] T020 [US1] Wire component stylesheet import and host styling application in /Users/nick/code/color-picker/src/picker-wc.ts
 
 **Checkpoint**: User Story 1 is fully functional and testable independently.
 
@@ -79,23 +79,23 @@ accessibility semantics, and emitted color values.
 
 ## Phase 4: User Story 2 - Build and Publish with Preferred Tooling (Priority: P2)
 
-**Goal**: Replace legacy build pipeline with Substrate-style TypeScript + esbuild outputs (ESM/CJS/types) and maintain lint/test workflows.
+**Goal**: Replace legacy build pipeline with Substrate-style TypeScript + esbuild outputs (ESM/minified/types) and maintain lint/test workflows.
 
-**Independent Test**: Run build and verify generated `dist/*.js`, `dist/*.cjs`, and `dist/*.d.ts` artifacts from TypeScript sources without webpack.
+**Independent Test**: Run build and verify generated `dist/index.js`, `dist/index.min.js`, and `dist/index.d.ts` artifacts from TypeScript sources without webpack.
 
 ### Tests for User Story 2 (REQUIRED) ⚠️
 
-- [X] T021 [P] [US2] Add failing build artifact verification test/fixture in /Users/nick/code/picker-wc/test/build-artifacts.test.ts
-- [X] T022 [P] [US2] Add failing package exports/types smoke test in /Users/nick/code/picker-wc/test/exports.test.ts
+- [X] T021 [P] [US2] Add failing build artifact verification test/fixture in /Users/nick/code/color-picker/test/build-artifacts.test.ts
+- [X] T022 [P] [US2] Add failing package exports/types smoke test in /Users/nick/code/color-picker/test/exports.test.ts
 
 ### Implementation for User Story 2
 
-- [X] T023 [US2] Replace webpack build scripts with esbuild + tsc scripts in /Users/nick/code/picker-wc/package.json
-- [X] T024 [US2] Add/replace build orchestration script for CJS/ESM/min outputs in /Users/nick/code/picker-wc/scripts/build.js
-- [X] T025 [US2] Remove obsolete webpack configuration and references in /Users/nick/code/picker-wc/webpack.config.js
-- [X] T026 [US2] Update package entry fields and exports map for TS-built outputs in /Users/nick/code/picker-wc/package.json
-- [X] T027 [US2] Add declaration generation path alignment for distributed types in /Users/nick/code/picker-wc/tsconfig.build.json
-- [X] T028 [US2] Update lint command to target TypeScript source and tests in /Users/nick/code/picker-wc/package.json
+- [X] T023 [US2] Replace webpack build scripts with esbuild + tsc scripts in /Users/nick/code/color-picker/package.json
+- [X] T024 [US2] Add/replace build orchestration script for ESM/min outputs in /Users/nick/code/color-picker/scripts/build.js
+- [X] T025 [US2] Remove obsolete webpack configuration and references in /Users/nick/code/color-picker/webpack.config.js
+- [X] T026 [US2] Update package entry fields and exports map for TS-built outputs in /Users/nick/code/color-picker/package.json
+- [X] T027 [US2] Add declaration generation path alignment for distributed types in /Users/nick/code/color-picker/tsconfig.build.json
+- [X] T028 [US2] Update lint command to target TypeScript source and tests in /Users/nick/code/color-picker/package.json
 
 **Checkpoint**: User Story 2 build/publish workflow works independently.
 
@@ -109,16 +109,16 @@ accessibility semantics, and emitted color values.
 
 ### Tests for User Story 3 (REQUIRED) ⚠️
 
-- [X] T029 [P] [US3] Add failing example integration smoke test for component mount in /Users/nick/code/picker-wc/test/example-smoke.test.ts
-- [X] T030 [P] [US3] Add failing interaction parity test for example behavior in /Users/nick/code/picker-wc/test/example-interaction.test.ts
+- [X] T029 [P] [US3] Add failing example integration smoke test for component mount in /Users/nick/code/color-picker/test/example-smoke.test.ts
+- [X] T030 [P] [US3] Add failing interaction parity test for example behavior in /Users/nick/code/color-picker/test/example-interaction.test.ts
 
 ### Implementation for User Story 3
 
-- [X] T031 [US3] Implement example app bootstrap and component registration in /Users/nick/code/picker-wc/example/main.ts
-- [X] T032 [US3] Implement example UI layout and swatch host markup in /Users/nick/code/picker-wc/example/index.html
-- [X] T033 [US3] Implement example styles for layout/readability and focus visualization in /Users/nick/code/picker-wc/example/style.css
-- [X] T034 [US3] Add example dev/build scripts and Vite config wiring in /Users/nick/code/picker-wc/package.json
-- [X] T035 [US3] Update quick usage docs for new example workflow in /Users/nick/code/picker-wc/README.md
+- [X] T031 [US3] Implement example app bootstrap and component registration in /Users/nick/code/color-picker/example/main.ts
+- [X] T032 [US3] Implement example UI layout and swatch host markup in /Users/nick/code/color-picker/example/index.html
+- [X] T033 [US3] Implement example styles for layout/readability and focus visualization in /Users/nick/code/color-picker/example/style.css
+- [X] T034 [US3] Add example dev/build scripts and Vite config wiring in /Users/nick/code/color-picker/package.json
+- [X] T035 [US3] Update quick usage docs for new example workflow in /Users/nick/code/color-picker/README.md
 
 **Checkpoint**: User Story 3 example experience is independently functional.
 
@@ -128,9 +128,9 @@ accessibility semantics, and emitted color values.
 
 **Purpose**: Final quality checks and documentation alignment across stories.
 
-- [X] T036 [P] Update migration notes and API contract cross-links in /Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/contracts/web-component-api.md
-- [X] T037 [P] Update quickstart commands to match finalized scripts in /Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/quickstart.md
-- [X] T038 Run full lint/test/build verification and capture output notes in /Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/quickstart.md
+- [X] T036 [P] Update migration notes and API contract cross-links in /Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/contracts/web-component-api.md
+- [X] T037 [P] Update quickstart commands to match finalized scripts in /Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/quickstart.md
+- [X] T038 Run full lint/test/build verification and capture output notes in /Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/quickstart.md
 
 ---
 
@@ -171,32 +171,32 @@ accessibility semantics, and emitted color values.
 
 ```bash
 # Parallel test authoring
-Task: "T012 [US1] Add failing render-order and default-selection test in /Users/nick/code/picker-wc/test/picker-wc.test.ts"
-Task: "T014 [US1] Add failing keyboard navigation and ARIA semantics test in /Users/nick/code/picker-wc/test/a11y.test.ts"
+Task: "T012 [US1] Add failing render-order and default-selection test in /Users/nick/code/color-picker/test/picker-wc.test.ts"
+Task: "T014 [US1] Add failing keyboard navigation and ARIA semantics test in /Users/nick/code/color-picker/test/a11y.test.ts"
 
 # Parallel helper implementation
-Task: "T007 Add color validation/parser helper utilities in /Users/nick/code/picker-wc/src/internal/color.ts"
-Task: "T008 Add deterministic selection state helpers in /Users/nick/code/picker-wc/src/internal/selection.ts"
+Task: "T007 Add color validation/parser helper utilities in /Users/nick/code/color-picker/src/internal/color.ts"
+Task: "T008 Add deterministic selection state helpers in /Users/nick/code/color-picker/src/internal/selection.ts"
 ```
 
 ### User Story 2
 
 ```bash
 # Parallel build/test guardrails
-Task: "T021 [US2] Add failing build artifact verification test/fixture in /Users/nick/code/picker-wc/test/build-artifacts.test.ts"
-Task: "T022 [US2] Add failing package exports/types smoke test in /Users/nick/code/picker-wc/test/exports.test.ts"
+Task: "T021 [US2] Add failing build artifact verification test/fixture in /Users/nick/code/color-picker/test/build-artifacts.test.ts"
+Task: "T022 [US2] Add failing package exports/types smoke test in /Users/nick/code/color-picker/test/exports.test.ts"
 
 # Parallel config updates
-Task: "T027 [US2] Add declaration generation path alignment for distributed types in /Users/nick/code/picker-wc/tsconfig.build.json"
-Task: "T028 [US2] Update lint command to target TypeScript source and tests in /Users/nick/code/picker-wc/package.json"
+Task: "T027 [US2] Add declaration generation path alignment for distributed types in /Users/nick/code/color-picker/tsconfig.build.json"
+Task: "T028 [US2] Update lint command to target TypeScript source and tests in /Users/nick/code/color-picker/package.json"
 ```
 
 ### User Story 3
 
 ```bash
 # Parallel example scaffolding
-Task: "T031 [US3] Implement example app bootstrap and component registration in /Users/nick/code/picker-wc/example/main.ts"
-Task: "T033 [US3] Implement example styles for layout/readability and focus visualization in /Users/nick/code/picker-wc/example/style.css"
+Task: "T031 [US3] Implement example app bootstrap and component registration in /Users/nick/code/color-picker/example/main.ts"
+Task: "T033 [US3] Implement example styles for layout/readability and focus visualization in /Users/nick/code/color-picker/example/style.css"
 ```
 
 ---

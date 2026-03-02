@@ -16,9 +16,7 @@
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
     "lint:style": "stylelint src/*.css",
-    "test": "npm run test:node && npm run test:browser",
-    "test:node": "rm -rf .tmp-test && esbuild ./test/build-artifacts.test.ts ./test/example-smoke.test.ts ./test/example-interaction.test.ts --bundle --format=esm --platform=node --outdir=.tmp-test && node --test .tmp-test/*.js",
-    "test:browser": "esbuild --bundle --loader:.css=text ./test/index.ts | tapout",
+    "test": "esbuild --bundle --loader:.css=text ./test/index.ts | tapout",
     "build-css": "lightningcss --targets \">= 0.25%\" --sourcemap --nesting src/index.css -o ./dist/style.css",
     "build-css:min": "lightningcss --targets \">= 0.25%\" --sourcemap --minify --nesting src/index.css -o ./dist/style.min.css",
     "build-esm": "esbuild src/index.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",

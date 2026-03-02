@@ -5,7 +5,7 @@
 Rationale:
 - Matches the Substrate ecosystem package style observed in
   `@substrate-system/web-component` scripts.
-- Produces both ESM and CJS efficiently with minimal config overhead.
+- Produces ESM and minified distribution bundles with minimal config overhead.
 - Improves maintainability and refactor safety during migration.
 
 Alternatives considered:

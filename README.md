@@ -1,7 +1,7 @@
 # color-picker
 [![tests](https://img.shields.io/github/actions/workflow/status/substrate-system/color-picker/nodejs.yml?style=flat-square)](https://github.com/substrate-system/color-picker/actions/workflows/nodejs.yml)
 [![types](https://img.shields.io/npm/types/@substrate-system/color-picker?style=flat-square)](README.md)
-[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
+[![module](https://img.shields.io/badge/module-ESM-blue?style=flat-square)](README.md)
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
 [![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
 [![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/color-picker)](https://packagephobia.com/result?p=@substrate-system/color-picker)
@@ -28,7 +28,6 @@ This was originally forked from [Simonwep/pickr](https://github.com/Simonwep/pic
   * [Keyboard navigation](#keyboard-navigation)
 - [Modules](#modules)
   * [ESM](#esm)
-  * [Common JS](#common-js)
 - [CSS](#css)
   * [Import CSS](#import-css)
   * [Customize CSS](#customize-css)
@@ -59,7 +58,8 @@ const picker = document.querySelector('color-picker')
 picker.swatches = ['#000', '#fff', '#ef4444', '#3b82f6']
 picker.value = '#000'
 
-picker.addEventListener('change', (ev) => {
+// use the `.on` method
+picker.on('change', (ev) => {
     console.log(ev.detail.value)   // selected color string
     console.log(ev.detail.index)   // index into swatches array
     console.log(ev.detail.source)  // 'pointer' | 'keyboard' | 'programmatic'
@@ -96,9 +96,9 @@ Fired when the selected color changes.
 
 ```ts
 interface ChangeDetail {
-    value:string | null
-    index:number | null
-    source:'pointer' | 'keyboard' | 'programmatic'
+    value:string|null
+    index:number|null
+    source:'pointer'|'keyboard'|'programmatic'
 }
 ```
 
@@ -114,25 +114,19 @@ When a swatch has focus:
 
 ## Modules
 
-This exposes ESM and Common JS via the
+This package ships ESM via the
 [package.json `exports` field](https://nodejs.org/api/packages.html#exports).
 
 ### ESM
 
 ```js
-import { registerColorPicker } from '@substrate-system/color-picker'
+import '@substrate-system/color-picker'
 ```
 
-Or import just the component class:
+Or import the component class:
 
 ```js
 import { ColorPicker } from '@substrate-system/color-picker'
-```
-
-### Common JS
-
-```js
-const { registerColorPicker } = require('@substrate-system/color-picker')
 ```
 
 ## CSS
@@ -148,7 +142,7 @@ import '@substrate-system/color-picker/css'
 Or minified:
 
 ```js
-import '@substrate-system/color-picker/css/min'
+import '@substrate-system/color-picker/min/css'
 ```
 
 ### Customize CSS

@@ -1,6 +1,6 @@
-# picker-wc Development Guidelines
+# color-picker Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-03-01
+Auto-generated from all feature plans. Last updated: 2026-03-02
 
 ## Active Technologies
 
@@ -10,7 +10,7 @@ Auto-generated from all feature plans. Last updated: 2026-03-01
 
 ```text
 src/
-tests/
+test/
 ```
 
 ## Commands

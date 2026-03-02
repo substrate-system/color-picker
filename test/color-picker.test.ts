@@ -1,5 +1,4 @@
 import { test } from '@substrate-system/tapzero'
-
 import { ColorPicker } from '../src/index'
 
 test('uses default swatches when none are provided', (t) => {
@@ -9,10 +8,11 @@ test('uses default swatches when none are provided', (t) => {
     const swatches = picker.querySelectorAll('[role="radio"]')
     t.equal(swatches.length, 9)
     t.equal((swatches[0] as HTMLElement|undefined)?.dataset.value, '#000000')
-    t.equal((swatches[0] as HTMLElement|undefined)?.getAttribute('aria-checked'), 'true')
+    t.equal((swatches[0] as HTMLElement|undefined)?.getAttribute('aria-checked'),
+        'true')
 })
 
-test('renders swatches in provided order with deterministic default selection', (t) => {
+test('renders swatches in order with deterministic default selection', (t) => {
     const picker = new ColorPicker()
     picker.swatches = ['#000000', '#ffffff', '#ff0000']
     picker.value = '#ffffff'
@@ -30,7 +30,9 @@ test('dispatches change event with value/index/source detail', async (t) => {
     picker.render()
 
     const eventPromise = new Promise<CustomEvent>((resolve) => {
-        picker.addEventListener('change', (ev) => resolve(ev as CustomEvent), { once: true })
+        picker.on('change', (ev) => {
+            return resolve(ev as CustomEvent)
+        }, { once: true })
     })
 
     picker.selectByIndex(1, 'programmatic')

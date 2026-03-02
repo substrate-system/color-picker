@@ -1,13 +1,13 @@
-# Contract: Picker Web Component API
+# Contract: Color Picker Web Component API
 
 Related docs:
-- Plan: `/Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/plan.md`
-- Data model: `/Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/data-model.md`
-- Quickstart: `/Users/nick/code/picker-wc/specs/001-substrate-wc-style-migration/quickstart.md`
+- Plan: `/Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/plan.md`
+- Data model: `/Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/data-model.md`
+- Quickstart: `/Users/nick/code/color-picker/specs/001-substrate-wc-style-migration/quickstart.md`
 
 ## Custom Element
 
-- Tag: `picker-wc`
+- Tag: `color-picker`
 - Base class: `@substrate-system/web-component`
 
 ## Public Attributes
