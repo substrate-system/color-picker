@@ -15,6 +15,7 @@
   },
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
+    "lint:style": "stylelint src/*.css",
     "test": "npm run test:node && npm run test:browser",
     "test:node": "rm -rf .tmp-test && esbuild ./test/build-artifacts.test.ts ./test/example-smoke.test.ts ./test/example-interaction.test.ts --bundle --format=esm --platform=node --outdir=.tmp-test && node --test .tmp-test/*.js",
     "test:browser": "esbuild --bundle --loader:.css=text ./test/index.ts | tapout",
@@ -50,6 +51,8 @@
     "lightningcss": "^1.31.1",
     "lightningcss-cli": "^1.31.1",
     "markdown-toc": "^1.2.0",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"
   },
