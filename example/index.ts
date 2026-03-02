@@ -1,5 +1,6 @@
 import '../src/index.js'
 import type { ChangeEvent } from '../src/index.js'
+import '../src/index.css'
 import './style.css'
 import Debug from '@substrate-system/debug'
 const debug = Debug('color-picker')

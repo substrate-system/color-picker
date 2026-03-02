@@ -1,6 +1,5 @@
 import { WebComponent } from '@substrate-system/web-component'
 import { define } from '@substrate-system/web-component/util'
-import './index.css'
 
 type InteractionSource = 'pointer'|'keyboard'|'programmatic'
 
