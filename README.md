@@ -90,9 +90,21 @@ You can also set `value` via an HTML attribute:
 
 ### Events
 
-#### `change`
+#### `color-picker:change`
 
-Fired when the selected color changes.
+Fired when the selected color changes. This is a namespaced event,
+[as described here](https://github.com/substrate-system/web-component#emitnamestring-opts-bubbles-cancelable-detail-boolean).
+You should use the `.on` method to listen for it:
+
+```ts
+const picker = document.querySelector('color-picker')
+
+// `.on` will convert the given 'change' event to
+// the correct namespaced event name, `color-picker:change`.
+picker.on('change', ev => {
+  // ...
+})
+```
 
 ```ts
 interface ChangeDetail {
