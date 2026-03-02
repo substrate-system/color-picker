@@ -1,18 +1,29 @@
 import { WebComponent } from '@substrate-system/web-component'
 import { define } from '@substrate-system/web-component/util'
-import { isValidCssColor, sanitizeSwatches } from './color'
-import {
-    clampIndex,
-    createSelectionState,
-    nextIndex,
-    type InteractionSource
-} from './selection'
 import './index.css'
 
-interface ChangeDetail {
+type InteractionSource = 'pointer'|'keyboard'|'programmatic'
+
+export interface ChangeDetail {
     value:string|null
     index:number|null
     source:InteractionSource
+}
+
+export type ChangeEvent = CustomEvent<ChangeDetail>
+
+interface SelectionState {
+    activeIndex:number|null
+    selectedIndex:number|null
+    selectedValue:string|null
+    lastInteraction:InteractionSource|null
+}
+
+// for docuement.querySelector
+declare global {
+    interface HTMLElementTagNameMap {
+        'color-picker':ColorPicker
+    }
 }
 
 export class ColorPicker extends WebComponent.create('color-picker') {
@@ -108,7 +119,7 @@ export class ColorPicker extends WebComponent.create('color-picker') {
         this._state.lastInteraction = source
         this.render()
 
-        this.dispatch<ChangeDetail>('change', {
+        this.emit<ChangeDetail>('change', {
             detail: {
                 value: this._state.selectedValue,
                 index: this._state.selectedIndex,
@@ -186,3 +197,38 @@ export class ColorPicker extends WebComponent.create('color-picker') {
 }
 
 define(ColorPicker.TAG, ColorPicker)
+
+function isValidCssColor (value:string):boolean {
+    if (!value || typeof value !== 'string') return false
+    const option = new Option()
+    option.style.color = ''
+    option.style.color = value
+    return option.style.color !== ''
+}
+
+function sanitizeSwatches (swatches:string[]):string[] {
+    return swatches.filter(isValidCssColor)
+}
+
+function createSelectionState ():SelectionState {
+    return {
+        activeIndex: null,
+        selectedIndex: null,
+        selectedValue: null,
+        lastInteraction: null
+    }
+}
+
+function clampIndex (index:number, max:number):number {
+    if (max < 0) return -1
+    if (index < 0) return 0
+    if (index > max) return max
+    return index
+}
+
+function nextIndex (current:number, delta:number, max:number):number {
+    const raw = current + delta
+    if (raw < 0) return max
+    if (raw > max) return 0
+    return raw
+}

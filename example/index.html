@@ -10,7 +10,10 @@
 
     <main>
       <h1>Color Picker Example</h1>
-      <color-picker id="picker"></color-picker>
+      <div class="picker-row">
+        <color-picker id="picker"></color-picker>
+        <div class="selected-preview" aria-hidden="true"></div>
+      </div>
       <p>Selected: <output id="selected">none</output></p>
     </main>
 

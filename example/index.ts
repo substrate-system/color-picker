@@ -1,10 +1,18 @@
-import { registerColorPicker } from '../src/index'
+import '../src/index.js'
+import type { ChangeEvent } from '../src/index.js'
 import './style.css'
+import Debug from '@substrate-system/debug'
+const debug = Debug('color-picker')
 
-registerColorPicker()
+localStorage.setItem('DEBUG', 'color-picker')
 
 const picker = document.querySelector('color-picker')!
 const output = document.getElementById('selected') as HTMLOutputElement
+const main = document.querySelector('main') as HTMLElement
+
+const setSelectedColor = (value:string|null):void => {
+    main.style.setProperty('--selected-color', value ?? 'transparent')
+}
 
 picker.swatches = [
     '#000000',
@@ -17,8 +25,11 @@ picker.swatches = [
     '#8b5cf6',
     '#ec4899'
 ]
-picker.value = picker.swatched[0]
+picker.value = picker.swatches[0]
+setSelectedColor(picker.value)
 
-picker.addEventListener('change', (ev: CustomEvent<{ value: string }>) => {
-    output.value = ev.detail?.value ?? 'none'
+picker.on<ChangeEvent>('change', (ev) => {
+    output.value = ev.detail.value ?? 'none'
+    setSelectedColor(ev.detail.value)
+    debug('change event...', ev)
 })

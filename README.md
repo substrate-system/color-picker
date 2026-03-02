@@ -126,7 +126,7 @@ import { registerColorPicker } from '@substrate-system/color-picker'
 Or import just the component class:
 
 ```js
-import { ColorPicker } from '@substrate-system/color-picker/color-picker'
+import { ColorPicker } from '@substrate-system/color-picker'
 ```
 
 ### Common JS

@@ -1,9 +1,7 @@
 import { test } from '@substrate-system/tapzero'
-
-import { ColorPicker, registerColorPicker } from '../src/index'
+import { ColorPicker } from '../src/index'
 
 test('supports keyboard navigation and aria semantics', (t) => {
-    registerColorPicker()
     const picker = new ColorPicker()
     picker.swatches = ['#000000', '#ffffff', '#ff0000']
     picker.render()

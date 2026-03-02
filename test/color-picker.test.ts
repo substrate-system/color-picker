@@ -1,9 +1,8 @@
 import { test } from '@substrate-system/tapzero'
 
-import { ColorPicker, registerColorPicker } from '../src/index'
+import { ColorPicker } from '../src/index'
 
 test('renders swatches in provided order with deterministic default selection', (t) => {
-    registerColorPicker()
     const picker = new ColorPicker()
     picker.swatches = ['#000000', '#ffffff', '#ff0000']
     picker.value = '#ffffff'
@@ -16,7 +15,6 @@ test('renders swatches in provided order with deterministic default selection', 
 })
 
 test('dispatches change event with value/index/source detail', async (t) => {
-    registerColorPicker()
     const picker = new ColorPicker()
     picker.swatches = ['#000000', '#ffffff']
     picker.render()
