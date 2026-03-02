@@ -1,6 +1,6 @@
 {
   "name": "@substrate-system/color-picker",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Color picker web component",
   "type": "module",
   "main": "index.js",
@@ -44,6 +44,7 @@
     "@substrate-system/tapzero": "^0.10.16",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
+    "auto-changelog": "^2.5.0",
     "browserslist": "^4.28.1",
     "esbuild": "^0.27.0",
     "eslint": "^8.57.0",
