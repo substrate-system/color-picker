@@ -18,10 +18,7 @@
       "types": "./dist/picker-wc.d.ts"
     }
   },
-  "files": [
-    "dist",
-    "src/styles"
-  ],
+  "files": ["dist/*"],
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
     "test": "esbuild ./test/*.test.ts --bundle --format=esm --platform=browser --outdir=.tmp-test && node --test .tmp-test/*.js",
