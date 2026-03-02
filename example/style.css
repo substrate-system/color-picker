@@ -2,6 +2,7 @@
 
 :root {
   color-scheme: light;
+
   --black:  #0f172a;
 }
 
@@ -22,10 +23,11 @@ color-picker {
 
 main {
   --selected-color: transparent;
+
   max-width: 40rem;
   margin: 0 auto;
   border: 1px solid black;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 14px 40px #0f172a26;
   padding: 2rem
 }
 
