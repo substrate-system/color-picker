@@ -7,7 +7,7 @@ color-picker {
     flex-wrap: wrap;
     gap: 2vw;
     align-items: center;
-    justify-content: flex-start
+    justify-content: space-evenly;
   }
 
   & .swatch {
